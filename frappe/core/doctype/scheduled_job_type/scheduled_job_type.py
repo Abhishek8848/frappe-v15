@@ -255,7 +255,10 @@ def insert_single_event(frequency: str, event: str, cron_format: str | None = No
 		savepoint = "scheduled_job_type_creation"
 		try:
 			frappe.db.savepoint("scheduled_job_type_creation")
-			frappe.db.sql('Delete FROM "tabScheduled Job Type" WHERE method = %s',(event))
+			if db_type == 'postgres'
+				frappe.db.sql('Delete FROM "tabScheduled Job Type" WHERE method = %s',(event))
+			else:
+				frappe.db.sql('DELETE FROM `tabScheduled Job Type` WHERE method = %s', (event,))
 			frappe.db.commit()
 			doc.insert()
 		except frappe.DuplicateEntryError:
