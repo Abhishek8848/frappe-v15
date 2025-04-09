@@ -401,8 +401,8 @@ class Document(BaseDocument):
 
 		if self.get("__islocal") or not self.get("name"):
 			return self.insert()
-        print("========================================check_permission==================================================")
-	    print(f"\n\n\n{self.name}\n\n\n\n")
+		print("========================================check_permission==================================================")
+		print(f"\n\n\n{self.name}\n\n\n\n")
 		self.check_if_locked()
 		self._set_defaults()
 		self.check_permission("write", "save")
